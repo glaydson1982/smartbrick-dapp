@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DApp SmartBrick – SBK</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    .container { max-width: 700px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+    h1 { text-align: center; color: #2c3e50; }
+    .btn { background: #27ae60; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
+    .btn:hover { background: #219150; }
+    .info { margin-top: 20px; background: #ecf0f1; padding: 15px; border-radius: 6px; }
+    label { font-weight: bold; margin-top: 10px; display: block; }
+    input { padding: 8px; width: 100%; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; }
+    .property-list { margin-top: 30px; }
+    .property { padding: 15px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>SmartBrick DApp – SBK Token</h1>
+
+  <button class="btn" onclick="connectWallet()">🔗 Conectar Carteira</button>
+  <div class="info" id="walletInfo">Carteira não conectada</div>
+
+  <div class="info">
+    <p><strong>Saldo de SBK:</strong> <span id="balance">0</span></p>
+    <p><strong>Valor estimado:</strong> R$ <span id="valorReais">0</span></p>
+  </div>
+
+  <label for="qtde">Quantidade de tokens SBK que deseja comprar:</label>
+  <input type="number" id="qtde" placeholder="Ex: 10">
+  <button class="btn" onclick="comprarTokens()">💸 Comprar Tokens</button>
+
+  <div class="property-list">
+    <h2>Imóveis Lastreados</h2>
+    <div class="property">
+      <strong>Apartamento – Centro de Contagem</strong><br>
+      Valor: R$ 200.000
+    </div>
+    <div class="property">
+      <strong>Flat – Hotel San Diego – Pampulha</strong><br>
+      Valor: R$ 190.000
+    </div>
+    <div class="property">
+      <strong>Apto 303 – Bairro Arcádia</strong><br>
+      Valor: R$ 200.000
+    </div>
+    <div class="property">
+      <strong>Apto 301 – Bairro Arcádia</strong><br>
+      Valor: R$ 200.000
+    </div>
+  </div>
+</div>
+
+<script>
+let web3;
+let sbkContract;
+const tokenAddress = "0xF1C0d7A369E3bA28b2746b14728BD65d7FA2674a"; // SBK
+const abi = [
+  {"constant":true,"inputs":[{"name":"account","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"type":"function"},
+  {"constant":false,"inputs":[{"name":"recipient","type":"address"},{"name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"type":"function"}
+];
+
+async function connectWallet() {
+  if (window.ethereum) {
+    web3 = new Web3(window.ethereum);
+    await window.ethereum.enable();
+    const accounts = await web3.eth.getAccounts();
+    document.getElementById("walletInfo").innerText = `Carteira conectada: ${accounts[0]}`;
+    sbkContract = new web3.eth.Contract(abi, tokenAddress);
+    atualizarSaldo(accounts[0]);
+  } else {
+    alert("MetaMask não detectado");
+  }
+}
+
+async function atualizarSaldo(account) {
+  const balance = await sbkContract.methods.balanceOf(account).call();
+  const saldo = web3.utils.fromWei(balance, "ether");
+  document.getElementById("balance").innerText = saldo;
+  document.getElementById("valorReais").innerText = (parseFloat(saldo) * 100).toFixed(2);
+}
+
+async function comprarTokens() {
+  const qtde = document.getElementById("qtde").value;
+  alert(`Simulação: você deseja comprar ${qtde} SBK por R$${qtde * 100}`);
+  // Aqui entra futura integração com contrato de venda ou recebimento de stablecoin
+}
+</script>
+</body>
+</html>
