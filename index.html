@@ -2,47 +2,66 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>SmartBrick – Imóveis Tokenizados</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartBrick – Tokenizing Real Estate</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <div class="logo">LEGACY GROUP</div>
     <nav>
-      <a href="index.html">🇧🇷</a>
-      <a href="index_en.html">🇺🇸</a>
-      <a href="index_it.html">🇮🇹</a>
+      <a href="#">Sharing Tokens</a>
+      <a href="#">Properties</a>
+      <a href="#">FAQ</a>
     </nav>
   </header>
   <main>
     <section class="hero">
-      <h1>Invista em Imóveis Tokenizados</h1>
-      <p>Compre tokens SBK com lastro real em imóveis.</p>
-      <button onclick="connectWallet()">Conectar Carteira</button>
-      <p id="wallet-address"></p>
+      <div class="hero-text">
+        <h1>SmartBrick</h1>
+        <p>Tokenizing Real Estate</p>
+        <p>Invest in tokenized properties with SBK, a blockchain-based asset backed by real estate.</p>
+        <button>Buy SBK Tokens</button>
+      </div>
+      <div class="wallet-box">
+        <button class="wallet-button">Connect Wallet</button>
+        <p>SBK Balance —</p>
+        <p>Estimated Value: $0</p>
+        <input type="number" placeholder="10" />
+        <button>Purchase</button>
+        <button>Generate Certificate</button>
+      </div>
     </section>
+
     <section class="properties">
-      <h2>Imóveis Tokenizados</h2>
-      <div class="property-card">Apartamento – Centro de Contagem – R$ 200.000</div>
-      <div class="property-card">Flat – Hotel San Diego – Pampulha – R$ 250.000</div>
-      <div class="property-card">Apartamento 303 – Bairro Arcádia – R$ 190.000</div>
-      <div class="property-card">Apartamento 301 – Bairro Arcádia – R$ 200.000</div>
+      <h2>Properties</h2>
+      <div class="property-list">
+        <div class="property-card">
+          <img src="assets/images/imovel1.png" alt="Apartamento – Centro de Contagem" />
+          <h3>Apartamento – Centro de Contagem</h3>
+          <p>Valuation: R$ 200.000</p>
+        </div>
+        <div class="property-card">
+          <img src="assets/images/imovel2.png" alt="Flat – Hotel San Diego – Pampulha" />
+          <h3>Flat – Hotel San Diego – Pampulha</h3>
+          <p>Valuation: R$ 250.000</p>
+        </div>
+        <div class="property-card">
+          <img src="assets/images/imovel3.png" alt="Apto 303 – Bairro Arcádia" />
+          <h3>Apto 303 – Bairro Arcádia</h3>
+          <p>Valuation: R$ 190.000</p>
+        </div>
+        <div class="property-card">
+          <img src="assets/images/imovel4.png" alt="Apto 301 – Bairro Arcádia" />
+          <h3>Apto 301 – Bairro Arcádia</h3>
+          <p>Valuation: R$ 200.000</p>
+        </div>
+      </div>
     </section>
   </main>
-  <script>
-    async function connectWallet() {
-      if (window.ethereum) {
-        try {
-          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-          document.getElementById('wallet-address').innerText = "Carteira: " + accounts[0];
-        } catch (err) {
-          alert("Erro ao conectar: " + err.message);
-        }
-      } else {
-        alert("MetaMask não encontrada.");
-      }
-    }
-  </script>
+  <footer>
+    Página oficial do projeto SmartBrick – powered by Legacy Group
+  </footer>
 </body>
 </html>
