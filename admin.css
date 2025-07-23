@@ -1,0 +1,37 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f6f6f6;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #003d33;
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+}
+main {
+  padding: 2em;
+}
+.dashboard ul {
+  list-style: none;
+  padding: 0;
+}
+.dashboard ul li {
+  margin-bottom: 0.5em;
+  font-size: 1.1em;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+th, td {
+  padding: 0.8em;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+thead {
+  background-color: #e0e0e0;
+}
