@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login Admin – SmartBrick</title>
+  <link rel="stylesheet" href="admin.css" />
+  <script>
+    function checkLogin(event) {
+      event.preventDefault();
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      if (user === 'admin' && pass === 'smartbrick2025') {
+        window.location.href = 'admin.html';
+      } else {
+        alert('Usuário ou senha incorretos.');
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Área Restrita</h1>
+  </header>
+  <main>
+    <form onsubmit="checkLogin(event)">
+      <label>Usuário:<br><input type="text" id="username" required></label><br><br>
+      <label>Senha:<br><input type="password" id="password" required></label><br><br>
+      <button type="submit">Entrar</button>
+    </form>
+  </main>
+</body>
+</html>
